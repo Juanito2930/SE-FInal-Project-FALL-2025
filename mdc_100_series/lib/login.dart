@@ -53,7 +53,7 @@ class _LoginPageState extends State<LoginPage> {
               textAlign: TextAlign.center,
               decoration: InputDecoration(
               border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(16)
+                borderRadius: BorderRadius.circular(100)
                 ),
                 label: Center(child: Text('Username')),
                 floatingLabelBehavior: FloatingLabelBehavior.never,
@@ -73,7 +73,7 @@ class _LoginPageState extends State<LoginPage> {
               obscureText: !_passwordVisible,
               decoration: InputDecoration(
               border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(16)
+                borderRadius: BorderRadius.circular(100)
               ),
 
                 label: Center(child: Text('Password')),

@@ -35,9 +35,9 @@ class _LoginPageState extends State<LoginPage> {
             const SizedBox(height: 80.0),
             Column(
               children: <Widget>[
-                Image.asset('assets/diamond.png'),
+                Image.asset('assets/mammal.png',width: 150, height: 150),
                 const SizedBox(height: 16.0),
-                const Text('SHRINE'),
+                const Text('GorillaPrintShop'),
               ],
             ),
             const SizedBox(height: 120.0),
@@ -49,7 +49,9 @@ class _LoginPageState extends State<LoginPage> {
                 labelText: 'Username',
               ),
             ),
+
             const SizedBox(height: 12.0),
+
             TextField(
               controller: _passwordController,
               decoration: const InputDecoration(
@@ -60,20 +62,19 @@ class _LoginPageState extends State<LoginPage> {
             ),
             const SizedBox(height: 12.0),
             OverflowBar(
-              alignment: MainAxisAlignment.end,
+              alignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 // TODO: Add a beveled rectangular border to CANCEL (103)
-                TextButton(
-                  child: const Text('CANCEL'),
+                ElevatedButton(
+                  child: const Text('REGISTER'),
                   onPressed: () {
-                    _usernameController.clear();
-                    _passwordController.clear();
+                    Navigator.pop(context);
                   },
                 ),
                 // TODO: Add an elevation to NEXT (103)
                 // TODO: Add a beveled rectangular border to NEXT (103)
                 ElevatedButton(
-                  child: const Text('NEXT'),
+                  child: const Text('LOGIN'),
                   onPressed: () {
                     Navigator.pop(context);
                   },

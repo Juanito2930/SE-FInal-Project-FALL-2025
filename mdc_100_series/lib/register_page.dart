@@ -25,15 +25,17 @@ class _RegisterPageState extends State<RegisterPage> {
             const SizedBox(height: 10),
             Column(
               children: <Widget>[
-                Image.asset('assets/mammal.png', width: 150, height: 150),
+                Image.asset('assets/gorilla.png', width: 125, height: 125),
                 const SizedBox(height: 16.0),
-                const Text('GorillaPrintShop'),
+                const Text('Sign up', style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold),
+                textAlign: TextAlign.center
+                ),
               ],
             ),
 
             const Text(
-              "Registration",
-              style: TextStyle(fontSize: 25, fontWeight: FontWeight.normal),
+              "Create an account",
+              style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
               textAlign: TextAlign.center,
             ),
 
@@ -78,7 +80,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                padding: const EdgeInsets.symmetric(vertical: 16),
+                padding: const EdgeInsets.symmetric(vertical: 16,),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(16),
                 ),
@@ -88,6 +90,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(content: Text("Account Created!")),
                 );
+                Navigator.pop(context);
               },
               child: const Text(
                 "CREATE ACCOUNT",

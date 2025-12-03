@@ -25,6 +25,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final _usernameController = TextEditingController();
   final _passwordController = TextEditingController();
+  bool _passwordVisible = false;
 
   @override
   Widget build(BuildContext context) {
@@ -37,19 +38,30 @@ class _LoginPageState extends State<LoginPage> {
             Column(
               children: <Widget>[
                 Image.asset('assets/mammal.png', width: 150, height: 150),
-                const SizedBox(height: 16.0),
-                const Text('GorillaPrintShop'),
+                const SizedBox(height: 50.0),
+                const Text(
+                'GorillaPrintShop',
+                style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold),
+                textAlign: TextAlign.center
+                ),
               ],
             ),
             const SizedBox(height: 120.0),
             // TODO: Remove filled: true values (103)
             TextField(
               controller: _usernameController,
+              textAlign: TextAlign.center,
               decoration: InputDecoration(
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(16)
                 ),
-                labelText: 'Username',
+                label: Center(child: Text('Username')),
+                floatingLabelBehavior: FloatingLabelBehavior.never,
+
+                suffixIcon: Opacity(
+                  opacity: 0.0,
+                   child: Icon(Icons.visibility_off),
+                   ),
               ),
             ),
 
@@ -57,21 +69,37 @@ class _LoginPageState extends State<LoginPage> {
 
             TextField(
               controller: _passwordController,
+              textAlign: TextAlign.center,
+              obscureText: !_passwordVisible,
               decoration: InputDecoration(
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(16)
               ),
-                labelText: 'Password',
+
+                label: Center(child: Text('Password')),
+                floatingLabelBehavior: FloatingLabelBehavior.never,
+
+                suffixIcon: IconButton(
+                  icon: Icon(
+                    _passwordVisible ? Icons.visibility : Icons.visibility_off,
+                  ),
+                  onPressed: () {
+                    setState(() {
+                      _passwordVisible = !_passwordVisible;
+                    });
+                  },
+                )
               ),
-              obscureText: true,
             ),
-            const SizedBox(height: 12.0),
+
+            const SizedBox(height: 25.0),
+
             OverflowBar(
               alignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 // TODO: Add a beveled rectangular border to CANCEL (103)
                 ElevatedButton(
-                  child: const Text('REGISTER'),
+                  child: const Text('SIGNUP'),
                   onPressed: () {
                     Navigator.push(
                       context,

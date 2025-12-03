@@ -12,11 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+// can reuse this for printer type and features
 enum Category {
   all,
-  accessories,
-  clothing,
-  home,
+  dotmatrix,
+  inkjet,
+  laser,
 }
 
 class Product {
@@ -35,7 +36,7 @@ class Product {
   final int price;
 
   String get assetName => '$id-0.jpg';
-  String get assetPackage => 'shrine_images';
+  String get assetPackage => 'zpeanits';
 
   @override
   String toString() => "$name (id=$id)";

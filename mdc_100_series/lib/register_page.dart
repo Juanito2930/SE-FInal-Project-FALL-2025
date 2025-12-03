@@ -11,6 +11,7 @@ class _RegisterPageState extends State<RegisterPage> {
   final _usernameController = TextEditingController();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+  final _nameController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -41,39 +42,111 @@ class _RegisterPageState extends State<RegisterPage> {
 
             const SizedBox(height: 100),
 
-            TextField(
-              controller: _usernameController,
-              decoration: InputDecoration( 
-                labelText: "Username",
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(16),
+
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  'Enter your Full Name',
+                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                 ),
-              ),
+
+                const SizedBox(height: 8),
+
+                TextField(
+                  controller: _nameController,
+                  textAlign: TextAlign.center,
+                  decoration: InputDecoration( 
+                    filled: true,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(100),
+                    ),
+                    label: Center(child: Text('First & Last', style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),)),
+                    floatingLabelBehavior: FloatingLabelBehavior.never,
+                  ),
+                ),
+              ],
             ),
 
             const SizedBox(height: 15),
 
-            TextField(
-              controller: _emailController,
-              decoration: InputDecoration(
-                labelText: "Email",
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(16),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  'Enter your Email',
+                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                 ),
-              ),
+
+                const SizedBox(height: 8),
+
+                TextField(
+                  controller: _emailController,
+                  textAlign: TextAlign.center,
+                  decoration: InputDecoration( 
+                    filled: true,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(100),
+                    ),
+                    label: Center(child: Text('Gorilla@gmail.com', style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),)),
+                    floatingLabelBehavior: FloatingLabelBehavior.never,
+                  ),
+                ),
+              ],
             ),
 
             const SizedBox(height: 15),
 
-            TextField(
-              controller: _passwordController,
-              obscureText: true,
-              decoration: InputDecoration(
-                labelText: "Password",
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(16),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  'Enter your Username',
+                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                 ),
-              ),
+
+                const SizedBox(height: 8),
+
+                TextField(
+                  controller: _usernameController,
+                  textAlign: TextAlign.center,
+                  decoration: InputDecoration(
+                    filled: true, 
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(100),
+                    ),
+                    label: Center(child: Text('Username', style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),)),
+                    floatingLabelBehavior: FloatingLabelBehavior.never,
+                  ),
+                ),
+              ],
+            ),
+
+            const SizedBox(height: 15),
+
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  'Create your Password',
+                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                ),
+
+                const SizedBox(height: 8),
+
+                TextField(
+                  controller: _passwordController,
+                  textAlign: TextAlign.center,
+                  decoration: InputDecoration( 
+                    filled: true,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(100),
+                    ),
+                    label: Center(child: Text('Password', style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),)),
+                    floatingLabelBehavior: FloatingLabelBehavior.never,
+                  ),
+                ),
+              ],
             ),
 
             const SizedBox(height: 25),

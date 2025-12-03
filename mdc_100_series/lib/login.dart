@@ -13,6 +13,7 @@
 // limitations under the License.
 
 import 'package:flutter/material.dart';
+import 'register_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -35,7 +36,7 @@ class _LoginPageState extends State<LoginPage> {
             const SizedBox(height: 80.0),
             Column(
               children: <Widget>[
-                Image.asset('assets/mammal.png',width: 150, height: 150),
+                Image.asset('assets/mammal.png', width: 150, height: 150),
                 const SizedBox(height: 16.0),
                 const Text('GorillaPrintShop'),
               ],
@@ -44,8 +45,10 @@ class _LoginPageState extends State<LoginPage> {
             // TODO: Remove filled: true values (103)
             TextField(
               controller: _usernameController,
-              decoration: const InputDecoration(
-                filled: true,
+              decoration: InputDecoration(
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(16)
+                ),
                 labelText: 'Username',
               ),
             ),
@@ -54,8 +57,10 @@ class _LoginPageState extends State<LoginPage> {
 
             TextField(
               controller: _passwordController,
-              decoration: const InputDecoration(
-                filled: true,
+              decoration: InputDecoration(
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(16)
+              ),
                 labelText: 'Password',
               ),
               obscureText: true,
@@ -68,7 +73,10 @@ class _LoginPageState extends State<LoginPage> {
                 ElevatedButton(
                   child: const Text('REGISTER'),
                   onPressed: () {
-                    Navigator.pop(context);
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder:(context) => const RegisterPage()),
+                      );
                   },
                 ),
                 // TODO: Add an elevation to NEXT (103)

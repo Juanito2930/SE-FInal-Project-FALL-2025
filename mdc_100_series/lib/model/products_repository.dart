@@ -18,48 +18,48 @@ class ProductsRepository {
   static List<Product> loadProducts(Category category) {
     const allProducts = <Product>[
       Product(
-        category: Category.accessories,
+        category: Category.laser,
         id: 0,
         isFeatured: true,
-        name: 'Vagabond sack',
-        price: 120,
+        name: 'Brother HL L2320D',
+        price: 300,
       ),
       Product(
-        category: Category.accessories,
+        category: Category.inkjet,
         id: 1,
         isFeatured: true,
-        name: 'Stella sunglasses',
-        price: 58,
+        name: 'Canon PIXMA TR160',
+        price: 220,
       ),
       Product(
-        category: Category.accessories,
+        category: Category.inkjet,
         id: 2,
         isFeatured: false,
-        name: 'Whitney belt',
-        price: 35,
+        name: 'Epson Expression Premium',
+        price: 300,
       ),
       Product(
-        category: Category.accessories,
+        category: Category.laser,
         id: 3,
         isFeatured: true,
-        name: 'Garden strand',
-        price: 98,
+        name: 'HP LaserJet 1012',
+        price: 85,
       ),
       Product(
-        category: Category.accessories,
+        category: Category.laser,
         id: 4,
         isFeatured: false,
-        name: 'Strut earrings',
-        price: 34,
+        name: 'HP LaserJet 4050tn',
+        price: 450,
       ),
       Product(
-        category: Category.accessories,
+        category: Category.dotmatrix,
         id: 5,
         isFeatured: false,
-        name: 'Varsity socks',
-        price: 12,
+        name: 'Oki Microline 590',
+        price: 450,
       ),
-      Product(
+      /*Product(
         category: Category.accessories,
         id: 6,
         isFeatured: false,
@@ -282,7 +282,7 @@ class ProductsRepository {
         isFeatured: true,
         name: 'Fine lines tee',
         price: 58,
-      ),
+      ),*/
     ];
     if (category == Category.all) {
       return allProducts;

@@ -116,6 +116,20 @@ class HomePage extends StatelessWidget {
         children: _buildGridCards(context),
       ),
       resizeToAvoidBottomInset: false,
+      floatingActionButton: _cartButton(),
     );
+
   }
+
+  Widget _cartButton(){
+    return FloatingActionButton (
+      onPressed: () { 
+      },
+     child: Image.asset(
+      '../assets/shopping-cart.png',
+      width: 25,
+      height: 25,
+     ), 
+    );
+}
 }

@@ -19,10 +19,8 @@ class DatabaseService{
       if (_db != null) return _db!;
         _db = await getDatabase();
         return _db!;
-
       }
-    
-
+      
     Future<Database> getDatabase() async {
       final databaseDirPath = await getDatabasesPath();
       final databasePath = join(databaseDirPath, "master_db.db");

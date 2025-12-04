@@ -13,6 +13,7 @@
 // limitations under the License.
 
 import 'package:flutter/material.dart';
+import 'package:shrine/colors.dart';
 import 'register_page.dart';
 
 class LoginPage extends StatefulWidget {
@@ -40,7 +41,7 @@ class _LoginPageState extends State<LoginPage> {
                 Image.asset('assets/mammal.png', width: 150, height: 150),
                 const SizedBox(height: 50.0),
                 const Text(
-                'GorillaPrintShop',
+                'Gorilla Printer Shop',
                 style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold),
                 textAlign: TextAlign.center
                 ),
@@ -106,6 +107,12 @@ class _LoginPageState extends State<LoginPage> {
                       MaterialPageRoute(builder:(context) => const RegisterPage()),
                       );
                   },
+                  style: ElevatedButton.styleFrom
+                  (
+                    foregroundColor: coconutWhite,
+                    backgroundColor: inkBlack,
+                    elevation: 8.0,
+                  )
                 ),
                 // TODO: Add an elevation to NEXT (103)
                 // TODO: Add a beveled rectangular border to NEXT (103)
@@ -114,6 +121,12 @@ class _LoginPageState extends State<LoginPage> {
                   onPressed: () {
                     Navigator.pop(context);
                   },
+                  style: ElevatedButton.styleFrom
+                  (
+                    foregroundColor: inkBlack,
+                    backgroundColor: bananaYellow,
+                    elevation: 8.0,
+                  )
                 ),
               ],
             ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'colors.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);
@@ -17,7 +18,8 @@ class _RegisterPageState extends State<RegisterPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Create Account"),
+        title: const Text("Create Account", style: TextStyle(color: coconutWhite)),
+        backgroundColor: jungleGreen,
       ),
       body: Padding(
         padding: const EdgeInsets.all(24.0),
@@ -42,13 +44,12 @@ class _RegisterPageState extends State<RegisterPage> {
 
             const SizedBox(height: 100),
 
-
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Text(
                   'Enter your Full Name',
-                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: inkBlack,),
                 ),
 
                 const SizedBox(height: 8),
@@ -61,7 +62,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(100),
                     ),
-                    label: Center(child: Text('First & Last', style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),)),
+                    label: Center(child: Text('First & Last', style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: jungleGreen,),)),
                     floatingLabelBehavior: FloatingLabelBehavior.never,
                   ),
                 ),
@@ -88,7 +89,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(100),
                     ),
-                    label: Center(child: Text('Gorilla@gmail.com', style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),)),
+                    label: Center(child: Text('Gorilla@gmail.com', style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: jungleGreen,),)),
                     floatingLabelBehavior: FloatingLabelBehavior.never,
                   ),
                 ),
@@ -115,7 +116,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(100),
                     ),
-                    label: Center(child: Text('Username', style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),)),
+                    label: Center(child: Text('Username', style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: jungleGreen,),)),
                     floatingLabelBehavior: FloatingLabelBehavior.never,
                   ),
                 ),
@@ -142,7 +143,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(100),
                     ),
-                    label: Center(child: Text('Password', style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),)),
+                    label: Center(child: Text('Password', style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: jungleGreen,),)),
                     floatingLabelBehavior: FloatingLabelBehavior.never,
                   ),
                 ),
@@ -167,7 +168,7 @@ class _RegisterPageState extends State<RegisterPage> {
               },
               child: const Text(
                 "CREATE ACCOUNT",
-                style: TextStyle(fontSize: 18),
+                style: TextStyle(fontSize: 18, color: inkBlack),
               ),
             ),
           ],

@@ -13,6 +13,7 @@
 // limitations under the License.
 
 import 'package:flutter/material.dart';
+import 'package:shrine/colors.dart';
 
 import 'home.dart';
 import 'login.dart';
@@ -35,10 +36,36 @@ class ShrineApp extends StatelessWidget {
         // TODO: Change backLayer field value to CategoryMenuPage (104)
       },
       // TODO: Customize the theme (103)
-      theme: ThemeData.light(useMaterial3: true),
+      theme: _gorillaTheme,
     );
   }
 }
 
-// TODO: Build a Shrine Theme (103)
+// TODO: Build a Gorilla Theme (103)
+final ThemeData _gorillaTheme = _buildGorillaTheme();
+
+ThemeData _buildGorillaTheme() {
+  final ThemeData base = ThemeData.light(useMaterial3: true);
+  return base.copyWith(
+    colorScheme: base.colorScheme.copyWith(
+      primary: gorillaGrey,
+      onPrimary: bananaYellow,
+      secondary: coconutWhite,
+      error: errorRed,
+    ),
+    // TODO: Add the text themes (103)
+    // TODO: Decorate the inputs (103)
+    inputDecorationTheme: const InputDecorationTheme
+    (
+      border: OutlineInputBorder(),
+      focusedBorder: OutlineInputBorder(
+        borderSide: BorderSide
+        (
+          width: 2.0,
+          color: jungleGreen,
+        ),
+      ),
+    ),
+  );
+}
 // TODO: Build a Shrine Text Theme (103)

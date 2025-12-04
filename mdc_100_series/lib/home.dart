@@ -14,6 +14,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'login.dart';
 
 import 'model/product.dart';
 import 'model/products_repository.dart';
@@ -80,8 +81,6 @@ class HomePage extends StatelessWidget {
   // TODO: Add a variable for Category (104)
   @override
   Widget build(BuildContext context) {
-    // TODO: Return an AsymmetricView (104)
-    // TODO: Pass Category variable to AsymmetricView (104)
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -91,7 +90,30 @@ class HomePage extends StatelessWidget {
           ),
           onPressed: () {},
         ),
-        title: const Text('SHRINE'),
+
+        title: Row( 
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+
+            const Text('GorillaPrintShop', style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
+
+            IconButton(
+            icon: Image.asset('assets/mammal.png', width: 40, height: 40),
+          onPressed: () {
+            // TODO: Add open login (104)
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (BuildContext context) => LoginPage()),
+            );
+          },
+        ),
+
+      ],
+    ),
+
+    automaticallyImplyLeading: true,
+
         actions: <Widget>[
           IconButton(
             icon: const Icon(
@@ -100,15 +122,16 @@ class HomePage extends StatelessWidget {
             ),
             onPressed: () {},
           ),
-          IconButton(
-            icon: const Icon(
-              Icons.tune,
-              semanticLabel: 'filter',
-            ),
-            onPressed: () {},
-          ),
+          // IconButton(
+          //   icon: const Icon(
+          //     Icons.tune,
+          //     semanticLabel: 'filter',
+          //   ),
+          //   onPressed: () {},
+          // ),
         ],
       ),
+
       body: GridView.count(
         crossAxisCount: 2,
         padding: const EdgeInsets.all(16.0),

@@ -20,7 +20,7 @@ class _RegisterPageState extends State<RegisterPage> {
         title: const Text("Create Account"),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(24.0),
+        padding: const EdgeInsets.all(50.0),
         child: ListView(
           children: [
             const SizedBox(height: 10),
@@ -153,6 +153,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
             ElevatedButton(
               style: ElevatedButton.styleFrom(
+                elevation: 5.0,
                 padding: const EdgeInsets.symmetric(vertical: 16,),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(16),

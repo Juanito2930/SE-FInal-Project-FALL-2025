@@ -126,22 +126,8 @@ class _HomePageState extends State<HomePage> {
             ),
             onPressed: () {},
           ),
-          // IconButton(
-          //   icon: const Icon(
-          //     Icons.tune,
-          //     semanticLabel: 'filter',
-          //   ),
-          //   onPressed: () {},
-          // ),
-          IconButton(
-          
-            icon: const Icon(
-              Icons.tune,
-              semanticLabel: 'filter',
-              color: coconutWhite,
-            ),
-            onPressed: () {},
-          ),
+
+      
         ],
       ),
 
@@ -158,17 +144,6 @@ class _HomePageState extends State<HomePage> {
 
   }
 
-  // Widget _cartButton(){
-  //   return FloatingActionButton (
-  //     onPressed: () { 
-  //     },
-  //    child: Image.asset(
-  //     '../assets/shopping-cart.png',
-  //     width: 25,
-  //     height: 25,
-  //    ), 
-  //   );
-  // }
 
   Widget _shoppingCartButton() {
     return FloatingActionButton(

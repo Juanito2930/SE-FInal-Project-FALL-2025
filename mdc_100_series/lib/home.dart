@@ -122,13 +122,6 @@ class HomePage extends StatelessWidget {
             ),
             onPressed: () {},
           ),
-          // IconButton(
-          //   icon: const Icon(
-          //     Icons.tune,
-          //     semanticLabel: 'filter',
-          //   ),
-          //   onPressed: () {},
-          // ),
         ],
       ),
 

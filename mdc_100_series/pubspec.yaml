@@ -26,7 +26,7 @@ flutter:
     - assets/diamond.png
     - assets/mammal.png
     - assets/gorilla.png
-    - assets/shopping-cart.png
+    - assets/shoppingcart.png
     # TODO: Add slanted menu asset (104)
     
     - packages/zpeanits/0-0.jpg

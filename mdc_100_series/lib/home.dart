@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'login.dart';
 import 'services/database_printers.dart';
 import 'package:shrine/colors.dart';
 
@@ -89,7 +90,32 @@ class _HomePageState extends State<HomePage> {
           ),
           onPressed: () {},
         ),
-        title: const Text('GORILLA PRINTER SHOP', style: TextStyle(color: bananaYellow),),
+
+
+        title: Row( 
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+
+            const Text('GorillaPrintShop', style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold, color: bananaYellow),),
+
+            IconButton(
+            icon: Image.asset('assets/mammal.png', width: 40, height: 40),
+          onPressed: () {
+            // TODO: Add open login (104)
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (BuildContext context) => LoginPage()),
+            );
+          },
+        ),
+
+      ],
+    ),
+
+    automaticallyImplyLeading: true,
+
+        
         actions: <Widget>[
           IconButton(
 
@@ -100,6 +126,13 @@ class _HomePageState extends State<HomePage> {
             ),
             onPressed: () {},
           ),
+          // IconButton(
+          //   icon: const Icon(
+          //     Icons.tune,
+          //     semanticLabel: 'filter',
+          //   ),
+          //   onPressed: () {},
+          // ),
           IconButton(
           
             icon: const Icon(
@@ -111,6 +144,7 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
+
       body: GridView.count(
         crossAxisCount: 2,
         padding: const EdgeInsets.all(16.0),

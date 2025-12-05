@@ -20,7 +20,7 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       body: SafeArea(
         child: ListView(
-          padding: const EdgeInsets.symmetric(horizontal: 24.0),
+          padding: const EdgeInsets.symmetric(horizontal: 50.0),
           children: <Widget>[
             const SizedBox(height: 80.0),
             Column(
@@ -94,12 +94,12 @@ class _LoginPageState extends State<LoginPage> {
                       MaterialPageRoute(builder:(context) => const RegisterPage()),
                       );
                   },
-                  style: ElevatedButton.styleFrom
-                  (
+                  style: ElevatedButton.styleFrom(
+                    elevation: 5.0,
                     foregroundColor: coconutWhite,
                     backgroundColor: inkBlack,
-                    elevation: 8.0,
-                  )
+                    
+                  ),
                 ),
                 // TODO: Add an elevation to NEXT (103)
                 // TODO: Add a beveled rectangular border to NEXT (103)
@@ -108,12 +108,11 @@ class _LoginPageState extends State<LoginPage> {
                   onPressed: () {
                     Navigator.pop(context);
                   },
-                  style: ElevatedButton.styleFrom
-                  (
+                  style: ElevatedButton.styleFrom(
+                    elevation: 5.0,
                     foregroundColor: inkBlack,
                     backgroundColor: bananaYellow,
-                    elevation: 8.0,
-                  )
+                  ),
                 ),
               ],
             ),

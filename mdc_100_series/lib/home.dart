@@ -7,6 +7,7 @@ import 'package:shrine/colors.dart';
 import 'model/product.dart';
 import 'cart.dart';
 import 'model/products_repository.dart';
+import 'model/product_detail_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -18,7 +19,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final DatabaseService _databaseService = DatabaseService.instance;
 
-  List<Card> _buildGridCards(BuildContext context) {
+  List<Widget> _buildGridCards(BuildContext context) {
     List<Product> products = ProductsRepository.loadProducts(Category.all);
 
     if (products.isEmpty) {
@@ -30,46 +31,56 @@ class _HomePageState extends State<HomePage> {
         locale: Localizations.localeOf(context).toString());
 
     return products.map((product) {
-      return Card(
-        clipBehavior: Clip.antiAlias,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            AspectRatio(
-              aspectRatio: 18 / 11,
-              child: Image.asset(
-                product.assetName,
-                package: product.assetPackage,
-                fit: BoxFit.fitWidth,
-              ),
+      return InkWell(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => ProductDetailPage(product: product),
             ),
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(16.0, 12.0, 16.0, 8.0),
-                child: Column(
-
-                  // TODO: Align labels to the bottom and center (103)
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  // TODO: Change innermost Column (103)
-                  children: <Widget>[
-                    Text(
-                      product.name,
-                      style: theme.textTheme.titleLarge,
-                      softWrap: false,
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 1,
-                    ),
-                    const SizedBox(height: 8.0),
-                    Text(
-                      formatter.format(product.price),
-                      style: theme.textTheme.bodyLarge,
-                    ),
-                  ],
+          );
+        },
+        child: Card(
+          clipBehavior: Clip.antiAlias,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              AspectRatio(
+                aspectRatio: 18 / 11,
+                child: Image.asset(
+                  product.assetName,
+                  package: product.assetPackage,
+                  fit: BoxFit.fitWidth,
                 ),
               ),
-            ),
-          ],
+
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(16.0, 12.0, 16.0, 8.0),
+                  child: Column(
+                    // mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: <Widget>[
+                      Text(
+                        product.name,
+                        style: theme.textTheme.titleLarge,
+                        softWrap: true,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 2,
+                      ),
+
+                      const Spacer(),
+
+                      Text(
+                        formatter.format(product.price),
+                        style: theme.textTheme.bodyLarge,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       );
     }).toList();

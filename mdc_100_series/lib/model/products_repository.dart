@@ -34,7 +34,7 @@ class ProductsRepository {
       Product(
         category: Category.inkjet,
         id: 2,
-        isFeatured: false,
+        isFeatured: true,
         name: 'Epson Expression Premium',
         price: 300,
       ),
@@ -48,14 +48,14 @@ class ProductsRepository {
       Product(
         category: Category.laser,
         id: 4,
-        isFeatured: false,
+        isFeatured: true,
         name: 'HP LaserJet 4050tn',
         price: 450,
       ),
       Product(
         category: Category.dotmatrix,
         id: 5,
-        isFeatured: false,
+        isFeatured: true,
         name: 'Oki Microline 590',
         price: 450,
       ),

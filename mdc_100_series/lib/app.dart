@@ -17,22 +17,52 @@ import 'package:shrine/colors.dart';
 
 import 'home.dart';
 import 'login.dart';
+import 'backdrop.dart';
+
+import 'model/product.dart';
+
+import 'category_menu_page.dart';
 
 // TODO: Convert ShrineApp to stateful widget (104)
-class ShrineApp extends StatelessWidget {
-  const ShrineApp({Key? key}) : super(key: key);
+class GorillaApp extends StatefulWidget {
+  const GorillaApp({Key? key}) : super(key: key);
 
+  @override
+  State<GorillaApp> createState() => _GorillaAppState();
+}
+
+class _GorillaAppState extends State<GorillaApp> {
+  Category _currentCategory = Category.all;
+
+  void _onCategoryTap(Category category) {
+    setState(() {
+      _currentCategory = category;
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Shrine',
+      title: 'Gorilla Printer Shop',
       initialRoute: '/login',
       routes: {
         '/login': (BuildContext context) => const LoginPage(),
-        // TODO: Change to a Backdrop with a HomePage frontLayer (104)
-        '/': (BuildContext context) => const HomePage(),
+       // TODO: Change to a Backdrop with a HomePage frontLayer (104)
+'/': (BuildContext context) => Backdrop(
+     // TODO: Make currentCategory field take _currentCategory (104)
+     currentCategory: Category.all,
+     // TODO: Pass _currentCategory for frontLayer (104)
+     frontLayer: HomePage(category: _currentCategory),
+     // TODO: Change backLayer field value to CategoryMenuPage (104)
+     backLayer: CategoryMenuPage(
+                currentCategory: _currentCategory,
+                onCategoryTap: _onCategoryTap,
+     ),
+     frontTitle: Text('GORILLA PRINTER SHOP'),
+     backTitle: Text('MENU'),
+),
         // TODO: Make currentCategory field take _currentCategory (104)
         // TODO: Pass _currentCategory for frontLayer (104)
+        
         // TODO: Change backLayer field value to CategoryMenuPage (104)
       },
       // TODO: Customize the theme (103)
@@ -52,6 +82,10 @@ ThemeData _buildGorillaTheme() {
       onPrimary: bananaYellow,
       secondary: coconutWhite,
       error: errorRed,
+    ),
+    appBarTheme: const AppBarTheme(
+      foregroundColor: coconutWhite,
+      backgroundColor: gorillaGrey,
     ),
     // TODO: Add the text themes (103)
     // TODO: Decorate the inputs (103)

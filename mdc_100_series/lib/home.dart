@@ -15,16 +15,24 @@ class HomePage extends StatefulWidget {
 final Category category;
   const HomePage({this.category = Category.all, Key? key}) : super(key: key);
 
-
-  @override
+   @override
+  Widget CategoryFilter_(BuildContext context) {
+    // TODO: Pass Category variable to AsymmetricView (104)
+    return SymmetricView(
+      products: ProductsRepository.loadProducts(category),
+    );
+  }
+  
   _HomePageState createState() => _HomePageState();
 }
+
+
 
 class _HomePageState extends State<HomePage> {
   final DatabaseService _databaseService = DatabaseService.instance;
 
   List<Widget> _buildGridCards(BuildContext context) {
-    List<Product> products = ProductsRepository.loadProducts(Category.all);
+    List<Product> products = ProductsRepository.loadProducts(widget.category);
 
     if (products.isEmpty) {
       return const <Card>[];
@@ -90,61 +98,12 @@ class _HomePageState extends State<HomePage> {
     }).toList();
   }
 
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-    //   appBar: AppBar(
-    //     backgroundColor: gorillaGrey,
-    //     leading: IconButton(
-
-    //       icon: const Icon(
-    //         Icons.menu,
-    //         semanticLabel: 'menu',
-    //         color: coconutWhite,
-    //       ),
-    //       onPressed: () {},
-    //     ),
-
-
-    //     title: Row( 
-    //       mainAxisAlignment: MainAxisAlignment.center,
-    //       children: [
-
-    //         const Text('GorillaPrintShop', style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold, color: bananaYellow),),
-
-    //         IconButton(
-    //         icon: Image.asset('assets/mammal.png', width: 40, height: 40),
-    //       onPressed: () {
-    //         // TODO: Add open login (104)
-    //         Navigator.push(
-    //           context,
-    //           MaterialPageRoute(
-    //             builder: (BuildContext context) => LoginPage()),
-    //         );
-    //       },
-    //     ),
-
-    //   ],
-    // ),
-
-    // automaticallyImplyLeading: true,
-
-        
-    //     actions: <Widget>[
-    //       IconButton(
-
-    //         icon: const Icon(
-    //           Icons.search,
-    //           semanticLabel: 'search',
-    //           color: coconutWhite,
-    //         ),
-    //         onPressed: () {},
-    //       ),
-
       
-    //     ],
-    //   ),
-
       body: GridView.count(
         crossAxisCount: 2,
         padding: const EdgeInsets.all(16.0),

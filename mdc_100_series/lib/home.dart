@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'login.dart';
-import 'services/database_printers.dart';
 import 'package:shrine/colors.dart';
 
 import 'model/product.dart';
@@ -29,7 +28,7 @@ final Category category;
 
 
 class _HomePageState extends State<HomePage> {
-  final DatabaseService _databaseService = DatabaseService.instance;
+
 
   List<Widget> _buildGridCards(BuildContext context) {
     List<Product> products = ProductsRepository.loadProducts(widget.category);

@@ -22,7 +22,7 @@ import '/login.dart';
 import '../model/product.dart';
 import 'product_columns.dart';
 import '/model/products_repository.dart';
-import '/services/database_printers.dart';
+
 import '/cart.dart';
 
 class SymmetricView extends StatelessWidget {

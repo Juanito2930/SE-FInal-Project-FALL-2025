@@ -93,57 +93,57 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: gorillaGrey,
-        leading: IconButton(
+    //   appBar: AppBar(
+    //     backgroundColor: gorillaGrey,
+    //     leading: IconButton(
 
-          icon: const Icon(
-            Icons.menu,
-            semanticLabel: 'menu',
-            color: coconutWhite,
-          ),
-          onPressed: () {},
-        ),
+    //       icon: const Icon(
+    //         Icons.menu,
+    //         semanticLabel: 'menu',
+    //         color: coconutWhite,
+    //       ),
+    //       onPressed: () {},
+    //     ),
 
 
-        title: Row( 
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
+    //     title: Row( 
+    //       mainAxisAlignment: MainAxisAlignment.center,
+    //       children: [
 
-            const Text('GorillaPrintShop', style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold, color: bananaYellow),),
+    //         const Text('GorillaPrintShop', style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold, color: bananaYellow),),
 
-            IconButton(
-            icon: Image.asset('assets/mammal.png', width: 40, height: 40),
-          onPressed: () {
-            // TODO: Add open login (104)
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (BuildContext context) => LoginPage()),
-            );
-          },
-        ),
+    //         IconButton(
+    //         icon: Image.asset('assets/mammal.png', width: 40, height: 40),
+    //       onPressed: () {
+    //         // TODO: Add open login (104)
+    //         Navigator.push(
+    //           context,
+    //           MaterialPageRoute(
+    //             builder: (BuildContext context) => LoginPage()),
+    //         );
+    //       },
+    //     ),
 
-      ],
-    ),
+    //   ],
+    // ),
 
-    automaticallyImplyLeading: true,
+    // automaticallyImplyLeading: true,
 
         
-        actions: <Widget>[
-          IconButton(
+    //     actions: <Widget>[
+    //       IconButton(
 
-            icon: const Icon(
-              Icons.search,
-              semanticLabel: 'search',
-              color: coconutWhite,
-            ),
-            onPressed: () {},
-          ),
+    //         icon: const Icon(
+    //           Icons.search,
+    //           semanticLabel: 'search',
+    //           color: coconutWhite,
+    //         ),
+    //         onPressed: () {},
+    //       ),
 
       
-        ],
-      ),
+    //     ],
+    //   ),
 
       body: GridView.count(
         crossAxisCount: 2,
@@ -156,7 +156,10 @@ class _HomePageState extends State<HomePage> {
       floatingActionButton: _shoppingCartButton(),
     );
 
+
   }
+//--------------
+
 
 
   Widget _shoppingCartButton() {

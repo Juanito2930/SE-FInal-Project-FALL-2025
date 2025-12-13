@@ -23,7 +23,7 @@ import '../model/product.dart';
 // import 'product_columns.dart';
 // import '/model/products_repository.dart';
 
-import '/cart.dart';
+import '/cart/cart.dart';
 
 class SymmetricView extends StatelessWidget {
   final List<Product> products;

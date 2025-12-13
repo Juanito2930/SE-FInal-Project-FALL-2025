@@ -39,7 +39,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
               ],
             ),
-
+//----------------------
             const Text(
               "Create an account",
               style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),

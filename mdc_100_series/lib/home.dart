@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 import 'model/product.dart';
-import 'cart.dart';
+import 'cart/cart.dart';
+import 'model/products_repository.dart';
 import 'model/product_detail_page.dart';
 import 'services/hive_service.dart';
 
@@ -13,6 +14,8 @@ class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
 }
+
+
 
 class _HomePageState extends State<HomePage> {
 
@@ -132,7 +135,9 @@ class _HomePageState extends State<HomePage> {
 
   Widget _shoppingCartButton() {
     return FloatingActionButton(
+      
       tooltip: 'Cart',
+
       onPressed: () {
         Navigator.push(
           context,

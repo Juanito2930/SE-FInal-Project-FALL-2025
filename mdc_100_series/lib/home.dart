@@ -4,7 +4,7 @@ import 'package:intl/intl.dart';
 // import 'package:shrine/colors.dart';
 
 import 'model/product.dart';
-import 'cart.dart';
+import 'cart/cart.dart';
 import 'model/products_repository.dart';
 import 'model/product_detail_page.dart';
 import 'supplemental/symmetric_view.dart';

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:shrine/colors.dart';
-import 'package:shrine/home.dart';
+// import 'package:shrine/home.dart';
 import 'product.dart';
+import '../cart/cart.dart';
 
 class ProductDetailPage extends StatelessWidget {
   final Product product;
@@ -61,6 +62,8 @@ class ProductDetailPage extends StatelessWidget {
                   icon: Image.asset('assets/shoppingcart.png', width: 20, height: 20,),
                   label: const Text("Add to Cart", style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),),
                   onPressed: () {
+                    
+                    CartModel.addItem(product.name, product.price);                    
 
                     // Cart logic
                     ScaffoldMessenger.of(context).showSnackBar(
@@ -69,10 +72,7 @@ class ProductDetailPage extends StatelessWidget {
                         duration: const Duration(seconds: 2),
                       ),
                     );
-                    Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (BuildContext context) => HomePage()));
+                   
                   },
                   style: ElevatedButton.styleFrom(
                     padding: const EdgeInsets.symmetric(vertical: 16),

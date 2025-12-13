@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shrine/app.dart';
-import 'package:shrine/home.dart';
-import 'package:shrine/login.dart';
-import '../model/product.dart';
+
 import 'cart.dart';
 
 class CheckoutPage extends StatefulWidget {
@@ -177,16 +174,16 @@ ElevatedButton(
                     ),
                   );
   // clear cart in database
-                      Navigator.pop(context);
-                      CartModel.clear();
-},
+                      Navigator.popUntil(context, (route) => route.isFirst);
+                    
+    },
 
 
-  child: const Text(
-    "CHECKOUT",
-    style: TextStyle(fontSize: 18,),
-  ),
-)
+            child: const Text(
+              "CHECKOUT",
+              style: TextStyle(fontSize: 18,),
+            ),
+          )
         ]
        ) 
         )

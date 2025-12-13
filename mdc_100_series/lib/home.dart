@@ -7,7 +7,7 @@ import 'model/product.dart';
 import 'cart/cart.dart';
 import 'model/products_repository.dart';
 import 'model/product_detail_page.dart';
-import 'supplemental/symmetric_view.dart';
+//import 'supplemental/symmetric_view.dart';
 
 class HomePage extends StatefulWidget {
 
@@ -15,17 +15,16 @@ final Category category;
   const HomePage({this.category = Category.all, Key? key}) : super(key: key);
 
    @override
-  Widget CategoryFilter_(BuildContext context) {
-    // TODO: Pass Category variable to AsymmetricView (104)
-    return SymmetricView(
-      products: ProductsRepository.loadProducts(category),
-    );
-  }
+  // Widget CategoryFilter_(BuildContext context) {
+  //   // TODO: Pass Category variable to AsymmetricView (104)
+  //   return SymmetricView(
+  //     products: ProductsRepository.loadProducts(category),
+  //   );
+  // }
   
   @override
   _HomePageState createState() => _HomePageState();
 }
-
 
 
 class _HomePageState extends State<HomePage> {
@@ -124,6 +123,7 @@ class _HomePageState extends State<HomePage> {
 
   Widget _shoppingCartButton() {
     return FloatingActionButton(
+      tooltip: 'Cart',
       onPressed: () {
 
        Navigator.push(

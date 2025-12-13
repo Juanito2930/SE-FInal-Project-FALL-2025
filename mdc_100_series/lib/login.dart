@@ -1,10 +1,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:shrine/colors.dart';
-import 'package:shrine/home.dart';
-// import 'package:sqflite/sqflite.dart';
+
+
 import 'register_page.dart';
-import 'services/database_services.dart';
+
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);

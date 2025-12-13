@@ -145,6 +145,7 @@ class _BackdropState extends State<Backdrop>
           Icons.menu,
           semanticLabel: 'menu',
         ),
+        tooltip: 'Category Menu',
         onPressed: _toggleBackdropLayerVisibility,
       ),
       title: Row(
@@ -155,7 +156,7 @@ class _BackdropState extends State<Backdrop>
         // TODO: Add shortcut to login screen from trailing icons (104)
         IconButton(
             icon: Image.asset('assets/mammal.png', width: 40, height: 40),
-            
+            tooltip: 'Login',
           onPressed: () {
             // TODO: Add open login (104)
             Navigator.push(
@@ -165,18 +166,19 @@ class _BackdropState extends State<Backdrop>
             );
           }
         ),
-        IconButton(
-          icon: const Icon(
-            Icons.search,
-            semanticLabel: 'search',
-          ),
-          onPressed: () {
-          // TODO: Add open login (104)
-          },
-        ),
+        // IconButton(
+        //   icon: const Icon(
+        //     Icons.search,
+        //     semanticLabel: 'search',
+        //   ),
+        //   onPressed: () {
+        //   // TODO: Add open login (104)
+        //   },
+        // ),
 
       IconButton(
         icon: const Icon(Icons.admin_panel_settings),
+        tooltip: 'Admin Portal',
         onPressed: (){
           Navigator.pushNamed(context, '/adminLogin');
         },

@@ -1,21 +1,40 @@
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
+import 'package:sqflite_common_ffi/sqflite_ffi.dart';
+
 
 class DatabaseCredentials {
+  static final DatabaseCredentials instance = DatabaseCredentials._constructor();
+  DatabaseCredentials._constructor();
+
+  static Database? _db;
+
+static Future<Database> get database async {
+  _db ??= await initDB();
+  
+
+  return _db!;
+
+  
+}
+
   static Future<Database> initDB() async {
+ 
     final dbPath = await getDatabasesPath();
     final path = join(dbPath, 'appdata.db');
 
+
     return openDatabase(
       path,
-      version: 1,
+      version: 2,
       onCreate: (db, version) async {
         // Users table
         await db.execute('''
           CREATE TABLE users (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
-            username TEXT,
+            fullname TEXT,
             email TEXT,
+            username TEXT,
             password TEXT
           )
         ''');
@@ -44,12 +63,13 @@ class DatabaseCredentials {
   }
 
   // Insert user
-  static Future<void> insertUser(Database db, String username, String email, String password) async {
+  static Future<void> insertUser(Database db, String fullname, String email,String username, String password) async {
     await db.insert(
       'users',
       {
-        'username': username,
+        'fullname': fullname,
         'email': email,
+        'username': username,
         'password': password,
       },
       conflictAlgorithm: ConflictAlgorithm.replace,
@@ -61,7 +81,7 @@ class DatabaseCredentials {
     await db.insert(
       'printers',
       {
-        'printername': printername,
+        'printerName': printername,
         'price': price,
         'description': description,   
       },

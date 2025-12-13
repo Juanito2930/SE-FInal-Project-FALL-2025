@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'colors.dart';
+import 'services/database_services.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);
@@ -9,6 +10,8 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
+
+  // final DatabaseCredentials _databaseService = DatabaseCredentials.instance;
   final _usernameController = TextEditingController();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
@@ -62,7 +65,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(100),
                     ),
-                    label: Center(child: Text('First & Last', style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: jungleGreen,),)),
+                    label: const Center(child: Text('First & Last', style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: jungleGreen,),)),
                     floatingLabelBehavior: FloatingLabelBehavior.never,
                   ),
                 ),
@@ -89,7 +92,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(100),
                     ),
-                    label: Center(child: Text('Gorilla@gmail.com', style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: jungleGreen,),)),
+                    label: const Center(child: Text('Gorilla@gmail.com', style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: jungleGreen,),)),
                     floatingLabelBehavior: FloatingLabelBehavior.never,
                   ),
                 ),
@@ -116,10 +119,11 @@ class _RegisterPageState extends State<RegisterPage> {
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(100),
                     ),
-                    label: Center(child: Text('Username', style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: jungleGreen,),)),
+                    label: const Center(child: Text('Username', style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: jungleGreen,),)),
                     floatingLabelBehavior: FloatingLabelBehavior.never,
                   ),
                 ),
+          
               ],
             ),
 
@@ -143,7 +147,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(100),
                     ),
-                    label: Center(child: Text('Password', style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: jungleGreen,),)),
+                    label: const Center(child: Text('Password', style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: jungleGreen,),)),
                     floatingLabelBehavior: FloatingLabelBehavior.never,
                   ),
                 ),
@@ -152,26 +156,82 @@ class _RegisterPageState extends State<RegisterPage> {
 
             const SizedBox(height: 25),
 
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                elevation: 5.0,
-                padding: const EdgeInsets.symmetric(vertical: 16,),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16),
-                ),
-              ),
-              onPressed: () {
-                // TODO: handle registration logic later
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text("Account Created!")),
-                );
-                Navigator.pop(context);
-              },
-              child: const Text(
-                "CREATE ACCOUNT",
-                style: TextStyle(fontSize: 18, color: inkBlack),
-              ),
-            ),
+
+
+            // ElevatedButton(
+            //   style: ElevatedButton.styleFrom(
+            //     elevation: 5.0,
+            //     padding: const EdgeInsets.symmetric(vertical: 16,),
+            //     shape: RoundedRectangleBorder(
+            //       borderRadius: BorderRadius.circular(16),
+            //     ),
+            //   ),
+            //   onPressed: () async{
+            //     // TODO: handle registration logic later
+            //     final fullname = _nameController.text.trim();                
+            //     final email    = _emailController.text.trim();                
+            //     final username = _usernameController.text.trim();
+            //     final password = _passwordController.text.trim();
+
+            //     final db = await DatabaseCredentials.database;
+
+            //     await  DatabaseCredentials.insertUser(db, fullname, email, username, password);
+            //     ScaffoldMessenger.of(context).showSnackBar(
+            //       const SnackBar(content: Text("Account Created!")),
+            //     );
+            //     Navigator.pop(context);
+            //   },
+            //   child: const Text(
+            //     "CREATE ACCOUNT",
+            //     style: TextStyle(fontSize: 18, color: inkBlack),
+            //   ),
+            // ),
+         ElevatedButton(
+  style: ElevatedButton.styleFrom(
+    elevation: 5.0,
+    padding: const EdgeInsets.symmetric(vertical: 16,),
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(16),
+    ),
+  ),
+  onPressed: () async {
+    final fullname = _nameController.text.trim();
+    final email    = _emailController.text.trim();
+    final username = _usernameController.text.trim();
+    final password = _passwordController.text.trim();
+
+    if (fullname.isEmpty || email.isEmpty || username.isEmpty || password.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("Please fill in all fields")),
+      );
+      return;
+    }
+
+    try {
+      final db = await DatabaseCredentials.database;
+
+      await DatabaseCredentials.insertUser(db, fullname, email, username, password);
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("Account Created!")),
+      );
+
+      Navigator.pop(context);
+    } catch (e, stacktrace) {
+      debugPrint('Registration error: $e');
+      debugPrint('Stacktrace: $stacktrace');
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Database error: $e')),
+      );
+    }
+  },
+  child: const Text(
+    "CREATE ACCOUNT",
+    style: TextStyle(fontSize: 18, color: inkBlack),
+  ),
+)
+
+
           ],
         ),
       ),

@@ -1,16 +1,23 @@
 
 import 'package:flutter/material.dart';
 import 'package:shrine/colors.dart';
+import 'package:shrine/home.dart';
+// import 'package:sqflite/sqflite.dart';
 import 'register_page.dart';
+import 'services/database_services.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
 
+
   @override
   _LoginPageState createState() => _LoginPageState();
+
 }
 
 class _LoginPageState extends State<LoginPage> {
+  // final DatabaseCredentials _databaseService = DatabaseCredentials.instance;
+
   final _usernameController = TextEditingController();
   final _passwordController = TextEditingController();
   bool _passwordVisible = false;
@@ -43,10 +50,10 @@ class _LoginPageState extends State<LoginPage> {
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(100)
                 ),
-                label: Center(child: Text('Username')),
+                label: const Center(child: Text('Username')),
                 floatingLabelBehavior: FloatingLabelBehavior.never,
 
-                suffixIcon: Opacity(
+                suffixIcon: const Opacity(
                   opacity: 0.0,
                    child: Icon(Icons.visibility_off),
                    ),
@@ -64,7 +71,7 @@ class _LoginPageState extends State<LoginPage> {
                 borderRadius: BorderRadius.circular(100)
               ),
 
-                label: Center(child: Text('Password')),
+                label: const Center(child: Text('Password')),
                 floatingLabelBehavior: FloatingLabelBehavior.never,
 
                 suffixIcon: IconButton(
@@ -105,9 +112,42 @@ class _LoginPageState extends State<LoginPage> {
                 // TODO: Add a beveled rectangular border to NEXT (103)
                 ElevatedButton(
                   child: const Text('LOGIN'),
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
+
+                  onPressed: () async{
+
+                  Navigator.pop(context);
+                  // onPressed: () async {
+                  //   try {
+                  //     final username = _usernameController.text.trim();
+                  //     final password = _passwordController.text.trim();
+
+                  //     final db = await DatabaseCredentials.database;
+
+                  //     final result = await db.query(
+                  //       'users',
+                  //       where: 'username = ? AND password = ?',
+                  //       whereArgs: [username, password],
+                  //     );
+
+                  //     if (result.isNotEmpty) {
+                  //       Navigator.push(
+                  //         context,
+                  //         MaterialPageRoute(builder: (_) => const HomePage()),
+                  //       );
+                  //     } else {
+                  //       ScaffoldMessenger.of(context).showSnackBar(
+                  //         const SnackBar(content: Text('Invalid username or password')),
+                  //       );
+                  //     }
+                  //   } catch (e) {
+                  //     debugPrint('Login error: $e');
+                  //     ScaffoldMessenger.of(context).showSnackBar(
+                  //       SnackBar(content: Text('Database error: $e')),
+                  //     );
+                  //   }
+                  }
+                  
+                  ,
                   style: ElevatedButton.styleFrom(
                     elevation: 5.0,
                     foregroundColor: inkBlack,

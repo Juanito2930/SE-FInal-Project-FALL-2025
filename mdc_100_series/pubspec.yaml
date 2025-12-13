@@ -24,7 +24,6 @@ dev_dependencies:
   flutter_lints: ^1.0.0
 
 flutter:
-  # TODO: Insert Fonts (103)
   uses-material-design: true
   assets:
     - assets/diamond.png
@@ -32,10 +31,12 @@ flutter:
     - assets/gorilla.png
     - assets/shoppingcart.png
     # TODO: Add slanted menu asset (104)
-    
-    - packages/zpeanits/0-0.jpg
-    - packages/zpeanits/1-0.jpg
-    - packages/zpeanits/2-0.jpg
-    - packages/zpeanits/3-0.jpg
-    - packages/zpeanits/4-0.jpg
-    - packages/zpeanits/5-0.jpg
+
+    # Printer images
+    - assets/brother_12320d.jpg
+    - assets/canon_pixma_tri160.jpg
+    - assets/epson_expression_premium.jpg
+    - assets/hp_laserjet_1012.jpg
+    - assets/hp_laserjet_4050tn.jpg
+    - assets/oki_microline_590.jpg
+

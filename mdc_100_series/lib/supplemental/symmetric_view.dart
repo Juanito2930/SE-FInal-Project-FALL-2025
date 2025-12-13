@@ -11,129 +11,228 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+//--------------------------------------------------------------------------------og
+// import 'package:flutter/material.dart';
+// import 'package:intl/intl.dart';
+// import 'package:path/path.dart';
+// // import 'package:shrine/colors.dart';
+
+// // import '/login.dart';
+
+// import '../model/product.dart';
+// // import 'product_columns.dart';
+// // import '/model/products_repository.dart';
+
+// import '/cart/cart.dart';
+
+// class SymmetricView extends StatelessWidget {
+//   final List<Product> products;
+
+//    const SymmetricView({Key? key, required this.products}) : super(key: key);
+
+//   //List<Product> products = ProductsRepository.loadProducts(Category.all);
+
+//   List<Card> _buildGridCards(BuildContext context)
+//   {
+//     if (products.isEmpty)
+//     {
+//       return const <Card>[];
+//     }
+//     final ThemeData theme = Theme.of(context);
+//     final NumberFormat formatter = NumberFormat.simpleCurrency(
+//         locale: Localizations.localeOf(context).toString());
+
+
+//     return products.map((product)
+//     {
+//       return Card
+//       (
+//         clipBehavior: Clip.antiAlias,
+//         child: Column
+//         (
+//           crossAxisAlignment: CrossAxisAlignment.start,
+//           children: <Widget>
+//           [
+//             AspectRatio
+//             (
+//               aspectRatio: 18 / 11,
+//               child: Image.asset
+//               (
+//                 product.assetName,
+//                 package: product.assetPackage,
+//                 fit: BoxFit.fitWidth,
+//               ),
+//           ),
+//           Expanded
+//           (
+//             child: Padding
+//             (
+//               padding: const EdgeInsets.fromLTRB(16.0, 12.0, 16.0, 8.0),
+//               child: Column
+//               (
+//                 // TODO: Align labels to the bottom and center (103)
+//                 mainAxisAlignment: MainAxisAlignment.start,
+//                 crossAxisAlignment: CrossAxisAlignment.end,
+//                 // TODO: Change innermost Column (103)
+//                 children: <Widget>
+//                 [
+//                   Text
+//                   (
+//                     product.name,
+//                     style: theme.textTheme.titleLarge,
+//                     softWrap: false,
+//                     overflow: TextOverflow.ellipsis,
+//                     maxLines: 1,
+//                   ),
+//                   const SizedBox(height: 8.0),
+//                   Text
+//                   (
+//                     formatter.format(product.price),
+//                     style: theme.textTheme.bodyLarge,
+//                   ),
+//                 ],
+//               ),
+//             ),
+//           ),
+//         ],
+//       ),
+//     );
+//   }).toList();
+// }
+
+//   @override
+//   Widget build(BuildContext context) 
+//   {
+//     return Scaffold
+//     (
+//       body: GridView.count
+//       (
+//         crossAxisCount: 2,
+//         padding: const EdgeInsets.all(16.0),
+//         childAspectRatio: 8.0 / 9.0,
+//         children: _buildGridCards(context),
+//       ),
+      
+//       resizeToAvoidBottomInset: false,
+//       floatingActionButton: _shoppingCartButton(),
+//     );
+//   }
+
+
+//   Widget _shoppingCartButton()
+//   {
+//     return FloatingActionButton
+//     (
+//       onPressed: () 
+//       {
+//         Navigator.push
+//         (
+//           context as BuildContext,
+//           MaterialPageRoute(builder:(context) => const CartPage()),
+//         );
+//         // TODO: hook into DatabaseService here
+//       },
+//       child: Image.asset
+//       (
+//         'assets/shoppingcart.png',
+//         width: 24,
+//         height: 24,
+//       ),
+//     );
+//   }
+// }
+//--------------------------------------------------------------------------------og
+
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:path/path.dart';
-// import 'package:shrine/colors.dart';
-
-// import '/login.dart';
 
 import '../model/product.dart';
-// import 'product_columns.dart';
-// import '/model/products_repository.dart';
-
-import '/cart/cart.dart';
+import '../cart/cart_page.dart'; // make sure this points to your CartPage
 
 class SymmetricView extends StatelessWidget {
   final List<Product> products;
 
-   const SymmetricView({Key? key, required this.products}) : super(key: key);
+  const SymmetricView({Key? key, required this.products}) : super(key: key);
 
-  //List<Product> products = ProductsRepository.loadProducts(Category.all);
-
-  List<Card> _buildGridCards(BuildContext context)
-  {
-    if (products.isEmpty)
-    {
+  List<Card> _buildGridCards(BuildContext context) {
+    if (products.isEmpty) {
       return const <Card>[];
     }
     final ThemeData theme = Theme.of(context);
     final NumberFormat formatter = NumberFormat.simpleCurrency(
-        locale: Localizations.localeOf(context).toString());
+      decimalDigits: 0,
+      locale: Localizations.localeOf(context).toString(),
+    );
 
-
-    return products.map((product)
-    {
-      return Card
-      (
+    return products.map((product) {
+      return Card(
         clipBehavior: Clip.antiAlias,
-        child: Column
-        (
+        child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>
-          [
-            AspectRatio
-            (
+          children: <Widget>[
+            AspectRatio(
               aspectRatio: 18 / 11,
-              child: Image.asset
-              (
-                product.assetName,
-                package: product.assetPackage,
-                fit: BoxFit.fitWidth,
-              ),
-          ),
-          Expanded
-          (
-            child: Padding
-            (
-              padding: const EdgeInsets.fromLTRB(16.0, 12.0, 16.0, 8.0),
-              child: Column
-              (
-                // TODO: Align labels to the bottom and center (103)
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.end,
-                // TODO: Change innermost Column (103)
-                children: <Widget>
-                [
-                  Text
-                  (
-                    product.name,
-                    style: theme.textTheme.titleLarge,
-                    softWrap: false,
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 1,
-                  ),
-                  const SizedBox(height: 8.0),
-                  Text
-                  (
-                    formatter.format(product.price),
-                    style: theme.textTheme.bodyLarge,
-                  ),
-                ],
+              // Placeholder image since Product has no assetName/assetPackage
+              child: Container(
+                color: Colors.grey[300],
+                child: const Center(
+                  child: Icon(Icons.print, size: 60, color: Colors.black54),
+                ),
               ),
             ),
-          ),
-        ],
-      ),
-    );
-  }).toList();
-}
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(16.0, 12.0, 16.0, 8.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: <Widget>[
+                    Text(
+                      product.name,
+                      style: theme.textTheme.titleLarge,
+                      softWrap: false,
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
+                    ),
+                    const SizedBox(height: 8.0),
+                    Text(
+                      formatter.format(product.price),
+                      style: theme.textTheme.bodyLarge,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+      );
+    }).toList();
+  }
 
   @override
-  Widget build(BuildContext context) 
-  {
-    return Scaffold
-    (
-      body: GridView.count
-      (
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: GridView.count(
         crossAxisCount: 2,
         padding: const EdgeInsets.all(16.0),
         childAspectRatio: 8.0 / 9.0,
         children: _buildGridCards(context),
       ),
-      
       resizeToAvoidBottomInset: false,
-      floatingActionButton: _shoppingCartButton(),
+      floatingActionButton: _shoppingCartButton(context),
     );
   }
 
-
-  Widget _shoppingCartButton()
-  {
-    return FloatingActionButton
-    (
-      onPressed: () 
-      {
-        Navigator.push
-        (
-          context as BuildContext,
-          MaterialPageRoute(builder:(context) => const CartPage()),
+  Widget _shoppingCartButton(BuildContext context) {
+    return FloatingActionButton(
+      onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const CartPage()),
         );
-        // TODO: hook into DatabaseService here
       },
-      child: Image.asset
-      (
+      child: Image.asset(
         'assets/shoppingcart.png',
         width: 24,
         height: 24,
@@ -141,6 +240,8 @@ class SymmetricView extends StatelessWidget {
     );
   }
 }
+
+
 
 
   /*

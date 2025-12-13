@@ -4,6 +4,7 @@ import 'package:shrine/colors.dart';
 
 
 import 'register_page.dart';
+
 // import 'services/database_services.dart';
 import 'services/hive_service.dart';
 
@@ -118,22 +119,24 @@ class _LoginPageState extends State<LoginPage> {
                     final username = _usernameController.text.trim();
                     final password = _passwordController.text.trim();
 
-                    if (username.isEmpty || password.isEmpty) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('Please enter username and password')),
-                      );
-                      return;
-                    }
 
-                    final isValid = HiveService.validateUser(username, password);
-
-                    if (isValid) {
                       Navigator.pushReplacementNamed(context, '/');
-                    } else {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('Invalid username or password')),
-                      );
-                    }
+                    // if (username.isEmpty || password.isEmpty) {
+                    //   ScaffoldMessenger.of(context).showSnackBar(
+                    //     const SnackBar(content: Text('Please enter username and password')),
+                    //   );
+                    //   return;
+                    // }
+
+                    // final isValid = HiveService.validateUser(username, password);
+
+                    // if (isValid) {
+                    //   Navigator.pushReplacementNamed(context, '/');
+                    // } else {
+                    //   ScaffoldMessenger.of(context).showSnackBar(
+                    //     const SnackBar(content: Text('Invalid username or password')),
+                    //   );
+                    // }
                   },
 
 

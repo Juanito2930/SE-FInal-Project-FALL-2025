@@ -18,6 +18,8 @@ import 'package:shrine/colors.dart';
 import 'home.dart';
 import 'login.dart';
 import 'backdrop.dart';
+import 'admin/admin_login.dart';
+import 'admin/admin_dashboard.dart';
 
 import 'model/product.dart';
 
@@ -46,6 +48,8 @@ class _GorillaAppState extends State<GorillaApp> {
       initialRoute: '/login',
       routes: {
         '/login': (BuildContext context) => const LoginPage(),
+        '/adminLogin': (context) => const AdminLoginPage(),
+        '/adminDashboard': (context) => const AdminDashboard(),
        // TODO: Change to a Backdrop with a HomePage frontLayer (104)
 '/': (BuildContext context) => Backdrop(
      // TODO: Make currentCategory field take _currentCategory (104)

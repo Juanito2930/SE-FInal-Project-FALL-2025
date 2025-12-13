@@ -174,6 +174,14 @@ class _BackdropState extends State<Backdrop>
           // TODO: Add open login (104)
           },
         ),
+
+      IconButton(
+        icon: const Icon(Icons.admin_panel_settings),
+        onPressed: (){
+          Navigator.pushNamed(context, '/adminLogin');
+        },
+      )
+
       ],
     ),
     );

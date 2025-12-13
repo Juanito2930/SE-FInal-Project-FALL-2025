@@ -1,16 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:shrine/model/products_repository.dart';
+import 'package:shrine/services/hive_service.dart';
 import '/model/product.dart';
+import 'dart:math';
 
 class AddEditPrinterPage extends StatefulWidget {
-  final Product? product;
-  final int? index;
+  final Map<String, dynamic>? product;
+  final dynamic hiveKey;
 
-  const AddEditPrinterPage({Key? key, this.product, this.index})
-      : super(key: key);
+  const AddEditPrinterPage({
+    Key? key,
+    this.product,
+    this.hiveKey,
+  }) : super(key: key);
 
   @override
   State<AddEditPrinterPage> createState() => _AddEditPrinterPageState();
+}
+
+int _getRandomImageId() {
+  final random = Random();
+  return random.nextInt(6); // matches your 0–5 image assets
 }
 
 class _AddEditPrinterPageState extends State<AddEditPrinterPage> {
@@ -22,26 +31,29 @@ class _AddEditPrinterPageState extends State<AddEditPrinterPage> {
   void initState() {
     super.initState();
     _nameController =
-        TextEditingController(text: widget.product?.name ?? '');
+        TextEditingController(text: widget.product?['name'] ?? '');
     _priceController =
-        TextEditingController(text: widget.product?.price.toString() ?? '');
-    _category = widget.product?.category ?? Category.laser;
+        TextEditingController(text: widget.product?['price']?.toString() ?? '');
+    _category = widget.product != null
+        ? Category.values.firstWhere(
+            (c) => c.name == widget.product!['category'],
+            orElse: () => Category.laser,
+          )
+        : Category.laser;
   }
 
   void _save() {
-    final newProduct = Product(
-      id: widget.product?.id ??
-          DateTime.now().millisecondsSinceEpoch, // unique ID
-      name: _nameController.text,
-      price: int.parse(_priceController.text),
-      category: _category,
-      isFeatured: false,
-    );
+    final productMap = {
+      'id': widget.product?['id'] ?? _getRandomImageId(),
+      'name': _nameController.text,
+      'price': int.parse(_priceController.text),
+      'category': _category.name,
+    };
 
-    if (widget.product == null) {
-      ProductsRepository.addProduct(newProduct);
+    if (widget.hiveKey == null) {
+      HiveService.addPrinter(productMap);
     } else {
-      ProductsRepository.updateProduct(widget.index!, newProduct);
+      HiveService.updatePrinter(widget.hiveKey, productMap);
     }
 
     Navigator.pop(context);
@@ -51,9 +63,7 @@ class _AddEditPrinterPageState extends State<AddEditPrinterPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.product == null
-            ? "Add Printer"
-            : "Edit Printer"),
+        title: Text(widget.product == null ? "Add Printer" : "Edit Printer"),
       ),
       body: Padding(
         padding: const EdgeInsets.all(20),

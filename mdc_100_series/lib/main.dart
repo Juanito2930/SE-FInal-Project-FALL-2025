@@ -13,16 +13,20 @@
 // limitations under the License.
 
 import 'package:flutter/material.dart';
-import 'package:sqflite_common_ffi/sqflite_ffi.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'services/hive_service.dart';
+// import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
 import 'app.dart';
-void main(){    
+void main() async {   
+  WidgetsFlutterBinding.ensureInitialized();
 
+  await Hive.initFlutter();
+  await Hive.openBox('printers');
 
-//   sqfliteFfiInit();
+  await HiveService.openBoxes();
 
-//   // Set the database factory
-//   databaseFactory = databaseFactoryFfi;
+  HiveService.seedPrintersIfEmpty();
 
     runApp(const GorillaApp());
 

@@ -4,7 +4,8 @@ import 'package:shrine/colors.dart';
 import 'package:shrine/home.dart';
 // import 'package:sqflite/sqflite.dart';
 import 'register_page.dart';
-import 'services/database_services.dart';
+// import 'services/database_services.dart';
+import 'services/hive_service.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -113,41 +114,29 @@ class _LoginPageState extends State<LoginPage> {
                 ElevatedButton(
                   child: const Text('LOGIN'),
 
-                  onPressed: () async{
+                  onPressed: () {
+                    final username = _usernameController.text.trim();
+                    final password = _passwordController.text.trim();
 
-                  Navigator.pop(context);
-                  // onPressed: () async {
-                  //   try {
-                  //     final username = _usernameController.text.trim();
-                  //     final password = _passwordController.text.trim();
+                    if (username.isEmpty || password.isEmpty) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('Please enter username and password')),
+                      );
+                      return;
+                    }
 
-                  //     final db = await DatabaseCredentials.database;
+                    final isValid = HiveService.validateUser(username, password);
 
-                  //     final result = await db.query(
-                  //       'users',
-                  //       where: 'username = ? AND password = ?',
-                  //       whereArgs: [username, password],
-                  //     );
+                    if (isValid) {
+                      Navigator.pushReplacementNamed(context, '/');
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('Invalid username or password')),
+                      );
+                    }
+                  },
 
-                  //     if (result.isNotEmpty) {
-                  //       Navigator.push(
-                  //         context,
-                  //         MaterialPageRoute(builder: (_) => const HomePage()),
-                  //       );
-                  //     } else {
-                  //       ScaffoldMessenger.of(context).showSnackBar(
-                  //         const SnackBar(content: Text('Invalid username or password')),
-                  //       );
-                  //     }
-                  //   } catch (e) {
-                  //     debugPrint('Login error: $e');
-                  //     ScaffoldMessenger.of(context).showSnackBar(
-                  //       SnackBar(content: Text('Database error: $e')),
-                  //     );
-                  //   }
-                  }
-                  
-                  ,
+
                   style: ElevatedButton.styleFrom(
                     elevation: 5.0,
                     foregroundColor: inkBlack,

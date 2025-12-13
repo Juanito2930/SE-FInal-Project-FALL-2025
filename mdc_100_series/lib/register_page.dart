@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'colors.dart';
-import 'services/database_services.dart';
+// import 'services/database_services.dart';
+import 'services/hive_service.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);
@@ -195,36 +196,39 @@ class _RegisterPageState extends State<RegisterPage> {
     ),
   ),
   onPressed: () async {
-    final fullname = _nameController.text.trim();
-    final email    = _emailController.text.trim();
-    final username = _usernameController.text.trim();
-    final password = _passwordController.text.trim();
+  final fullname = _nameController.text.trim();
+  final email    = _emailController.text.trim();
+  final username = _usernameController.text.trim();
+  final password = _passwordController.text.trim();
 
-    if (fullname.isEmpty || email.isEmpty || username.isEmpty || password.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("Please fill in all fields")),
-      );
-      return;
-    }
+  if (fullname.isEmpty || email.isEmpty || username.isEmpty || password.isEmpty) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text("Please fill in all fields")),
+    );
+    return;
+  }
 
-    try {
-      final db = await DatabaseCredentials.database;
+  try {
+    HiveService.addUser(
+      fullname,
+      email,
+      username,
+      password,
+    );
 
-      await DatabaseCredentials.insertUser(db, fullname, email, username, password);
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text("Account Created!")),
+    );
 
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("Account Created!")),
-      );
+    Navigator.pop(context);
+  } catch (e) {
+    debugPrint('Registration error: $e');
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text('Error creating account: $e')),
+    );
+  }
+},
 
-      Navigator.pop(context);
-    } catch (e, stacktrace) {
-      debugPrint('Registration error: $e');
-      debugPrint('Stacktrace: $stacktrace');
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Database error: $e')),
-      );
-    }
-  },
   child: const Text(
     "CREATE ACCOUNT",
     style: TextStyle(fontSize: 18, color: inkBlack),

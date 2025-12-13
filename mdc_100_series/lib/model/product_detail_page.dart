@@ -69,10 +69,7 @@ class ProductDetailPage extends StatelessWidget {
                         duration: const Duration(seconds: 2),
                       ),
                     );
-                    Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (BuildContext context) => HomePage()));
+                    Navigator.pop(context);
                   },
                   style: ElevatedButton.styleFrom(
                     padding: const EdgeInsets.symmetric(vertical: 16),

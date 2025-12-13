@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:shrine/model/products_repository.dart';
-// import 'package:shrine/model/product.dart';
 import 'admin_edit_printers.dart';
+import 'package:shrine/services/hive_service.dart';
 
 class AdminProductsPage extends StatefulWidget {
   const AdminProductsPage({Key? key}) : super(key: key);
@@ -15,10 +14,22 @@ class _AdminProductsPageState extends State<AdminProductsPage> {
 
   @override
   Widget build(BuildContext context) {
-    final products = ProductsRepository.allProducts;
+    final products = HiveService.getPrinters();
 
     return Scaffold(
-      appBar: AppBar(title: const Text("Manage Printers")),
+      appBar: AppBar(
+        title: const Text("Manage Printers"),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.restart_alt),
+            tooltip: 'Reset Catalog',
+            onPressed: () {
+              HiveService.resetCatalog();
+              _refresh();
+            },
+          ),
+        ],
+      ),
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
         onPressed: () async {
@@ -39,9 +50,9 @@ class _AdminProductsPageState extends State<AdminProductsPage> {
           return Card(
             margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
             child: ListTile(
-              title: Text(product.name),
+              title: Text(product['name']),
               subtitle: Text(
-                "${product.category.name.toUpperCase()} • \$${product.price}",
+                "${product['category'].toUpperCase()} • \$${product['price']}",
               ),
               trailing: Row(
                 mainAxisSize: MainAxisSize.min,
@@ -54,7 +65,7 @@ class _AdminProductsPageState extends State<AdminProductsPage> {
                         MaterialPageRoute(
                           builder: (_) => AddEditPrinterPage(
                             product: product,
-                            index: index,
+                            hiveKey: product['_key'],
                           ),
                         ),
                       );
@@ -64,20 +75,11 @@ class _AdminProductsPageState extends State<AdminProductsPage> {
                   IconButton(
                     icon: const Icon(Icons.delete),
                     onPressed: () {
-                      ProductsRepository.deleteProduct(index);
+                      HiveService.deletePrinter(product['_key']);
                       _refresh();
 
                       ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: const Text('Printer deleted'),
-                          action: SnackBarAction(
-                            label: 'UNDO',
-                             onPressed: (){
-                              ProductsRepository.restoreLastDeleted();
-                              _refresh();
-                             },
-                          ),
-                        ),
+                        const SnackBar(content: Text('Printer deleted')),
                       );
                     },
                   ),
@@ -90,4 +92,3 @@ class _AdminProductsPageState extends State<AdminProductsPage> {
     );
   }
 }
-

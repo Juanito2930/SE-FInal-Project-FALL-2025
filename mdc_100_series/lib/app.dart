@@ -14,6 +14,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:shrine/colors.dart';
+import 'package:shrine/services/hive_service.dart';
 
 import 'home.dart';
 import 'login.dart';
@@ -36,14 +37,24 @@ class GorillaApp extends StatefulWidget {
 class _GorillaAppState extends State<GorillaApp> {
   Category _currentCategory = Category.all;
 
+  // @override
+  // void initState() {
+  //   // TODO: implement initState
+  //   super.initState();                 //hive conflicts
+  //   HiveService.openBoxes();
+  //   HiveService.seedPrintersIfEmpty();
+  // }
+
   void _onCategoryTap(Category category) {
     setState(() {
       _currentCategory = category;
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Gorilla Printer Shop',
       initialRoute: '/login',
       routes: {

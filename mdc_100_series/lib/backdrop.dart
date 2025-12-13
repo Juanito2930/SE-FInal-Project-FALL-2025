@@ -98,14 +98,16 @@ class _BackdropState extends State<Backdrop>
 
     // TODO: Add BuildContext and BoxConstraints parameters to _buildStack (104)
   Widget _buildStack(BuildContext context, BoxConstraints constraints) {
+    final double appBarHeight = AppBar().preferredSize.height;
     const double layerTitleHeight = 48.0;
     final Size layerSize = constraints.biggest;
-    final double layerTop = layerSize.height - layerTitleHeight;
-
+    // final double layerTop = layerSize.height - layerTitleHeight;
+    final double layerTop = layerSize.height - layerTitleHeight - appBarHeight;
     // TODO: Create a RelativeRectTween Animation (104)
     Animation<RelativeRect> layerAnimation = RelativeRectTween(
       begin: RelativeRect.fromLTRB(
-          0.0, layerTop, 0.0, layerTop - layerSize.height),
+          0.0, layerTop, 0.0, layerTop - (layerSize.height - appBarHeight),
+          ),
       end: const RelativeRect.fromLTRB(0.0, 0.0, 0.0, 0.0),
     ).animate(_controller.view);
 

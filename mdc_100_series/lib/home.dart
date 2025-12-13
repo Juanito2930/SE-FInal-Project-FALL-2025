@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'login.dart';
-import 'package:shrine/colors.dart';
+// import 'login.dart';
+// import 'package:shrine/colors.dart';
 
 import 'model/product.dart';
 import 'cart.dart';
@@ -22,6 +22,7 @@ final Category category;
     );
   }
   
+  @override
   _HomePageState createState() => _HomePageState();
 }
 

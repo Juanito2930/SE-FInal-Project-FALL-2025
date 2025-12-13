@@ -161,12 +161,12 @@ class _BackdropState extends State<Backdrop>
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (BuildContext context) => LoginPage()),
+                builder: (BuildContext context) => const LoginPage()),
             );
           }
         ),
         IconButton(
-          icon: Icon(
+          icon: const Icon(
             Icons.search,
             semanticLabel: 'search',
           ),

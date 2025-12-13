@@ -15,20 +15,20 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:path/path.dart';
-import 'package:shrine/colors.dart';
+// import 'package:shrine/colors.dart';
 
-import '/login.dart';
+// import '/login.dart';
 
 import '../model/product.dart';
-import 'product_columns.dart';
-import '/model/products_repository.dart';
+// import 'product_columns.dart';
+// import '/model/products_repository.dart';
 
 import '/cart.dart';
 
 class SymmetricView extends StatelessWidget {
   final List<Product> products;
 
-   SymmetricView({Key? key, required this.products}) : super(key: key);
+   const SymmetricView({Key? key, required this.products}) : super(key: key);
 
   //List<Product> products = ProductsRepository.loadProducts(Category.all);
 

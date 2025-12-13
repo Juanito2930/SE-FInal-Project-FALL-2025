@@ -1,6 +1,6 @@
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
-
+import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
 
 class DatabaseCredentials {
@@ -11,7 +11,11 @@ class DatabaseCredentials {
 
 static Future<Database> get database async {
   _db ??= await initDB();
+  
+
   return _db!;
+
+  
 }
 
   static Future<Database> initDB() async {

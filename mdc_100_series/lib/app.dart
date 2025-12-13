@@ -57,8 +57,8 @@ class _GorillaAppState extends State<GorillaApp> {
                 currentCategory: _currentCategory,
                 onCategoryTap: _onCategoryTap,
      ),
-     frontTitle: Text('GORILLA PRINTER SHOP'),
-     backTitle: Text('MENU'),
+     frontTitle: const Text('GORILLA PRINTER SHOP'),
+     backTitle: const Text('MENU'),
 ),
         // TODO: Make currentCategory field take _currentCategory (104)
         // TODO: Pass _currentCategory for frontLayer (104)

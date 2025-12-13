@@ -41,6 +41,7 @@ class _HomePageState extends State<HomePage> {
           );
         },
         child: Card(
+          // color: coconutBrown,
           clipBehavior: Clip.antiAlias,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -89,6 +90,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // backgroundColor: coconutWhite,
       appBar: AppBar(
         backgroundColor: gorillaGrey,
         leading: IconButton(

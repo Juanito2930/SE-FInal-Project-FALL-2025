@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:shrine/colors.dart';
+import 'package:shrine/home.dart';
 import 'product.dart';
 
 class ProductDetailPage extends StatelessWidget {
@@ -10,7 +12,8 @@ class ProductDetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(product.name),
+        backgroundColor: gorillaGrey,
+        title: Text(product.name,style: TextStyle(color: bananaYellow)),
       ),
 
       body: SingleChildScrollView(
@@ -20,7 +23,7 @@ class ProductDetailPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               AspectRatio(
-                aspectRatio: 1.2, // Adjust for preferred shape
+                aspectRatio: 1.2,
                 child: Image.asset(
                   product.assetName,
                   package: product.assetPackage,
@@ -45,7 +48,7 @@ class ProductDetailPage extends StatelessWidget {
               const SizedBox(height: 20),
 
               Text(
-                "More details about the product will go here...",
+                "More product details",
                 style: Theme.of(context).textTheme.bodyLarge,
               ),
 
@@ -66,6 +69,10 @@ class ProductDetailPage extends StatelessWidget {
                         duration: const Duration(seconds: 2),
                       ),
                     );
+                    Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (BuildContext context) => HomePage()));
                   },
                   style: ElevatedButton.styleFrom(
                     padding: const EdgeInsets.symmetric(vertical: 16),
